@@ -8,6 +8,13 @@ const Category = require('../models/category.model');
  * @returns {Promise<User>}
  */
 const createCategory = async (categoryBody) => {
+  const category = await Category.findOne({
+    name: categoryBody.name,
+  });
+  if (category) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Category already taken');
+  }
+
   return Category.create(categoryBody);
 };
 
