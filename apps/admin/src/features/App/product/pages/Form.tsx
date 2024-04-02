@@ -42,7 +42,7 @@ const FormProductPage = () => {
                 ?.filter((file: any) => file?.url)
                 ?.map((file: any) => file.url)
                 ?.join(','),
-            price: values?.price ? values?.price * 1000000 : '',
+            price: values?.price ? values?.price : '',
         };
 
         const formData = new FormData();
@@ -118,7 +118,7 @@ const FormProductPage = () => {
                 form.setFieldsValue({
                     name: res?.name,
                     category_id: res?.category_id,
-                    price: res?.price / 1000000,
+                    price: res?.price,
                     attribute: res?.attribute,
                     description: res?.description,
                     file: res.images.split(',').map((image: any) => {
@@ -220,10 +220,10 @@ const FormProductPage = () => {
                                         <InputNumber
                                             min={1}
                                             style={{ width: '100%' }}
-                                            // formatter={(value) => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                                            // parser={(value: any) => (value ? value.replace(/[^0-9]/g, '') : '')}
+                                            formatter={(value) => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                                            parser={(value: any) => (value ? value.replace(/[^0-9]/g, '') : '')}
                                             placeholder="Nhập giá xe"
-                                            addonAfter="triệu"
+                                            addonAfter="VND"
                                         />
                                     }
                                 />
@@ -236,7 +236,7 @@ const FormProductPage = () => {
                                     <NewsEditor
                                         height={400}
                                         handleCallbackContent={handleCallbackAttribute}
-                                        handleCallbackContentNotDebounce={() => {}}
+                                        handleCallbackContentNotDebounce={() => { }}
                                         refContent={refAttribute.current}
                                     />
                                 </Form.Item>
@@ -249,7 +249,7 @@ const FormProductPage = () => {
                         <Form.Item wrapperCol={{ span: 24 }} name="description">
                             <NewsEditor
                                 handleCallbackContent={handleCallbackContent}
-                                handleCallbackContentNotDebounce={() => {}}
+                                handleCallbackContentNotDebounce={() => { }}
                                 refContent={refContent.current}
                             />
                         </Form.Item>
