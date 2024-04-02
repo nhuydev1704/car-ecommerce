@@ -34,7 +34,7 @@ const CategoryFormPage = ({
     React.useEffect(() => {
         if (values) {
             setLoadingModal(true);
-            form.setFieldsValue({ ...values });
+            form.setFieldsValue({ ...values, icon: values.logo });
             wait(500).then(() => setLoadingModal(false));
         }
     }, [values]);
@@ -43,7 +43,7 @@ const CategoryFormPage = ({
             setLoadingModal(true);
             const dataSend = {
                 ...data,
-                icon: data.icon.originFileObj,
+                icon: data?.icon?.originFileObj || data.icon,
             };
 
             const formData = new FormData();
@@ -51,36 +51,28 @@ const CategoryFormPage = ({
                 formData.append(key, dataSend[key]);
             });
 
-            if (values) {
-                // const res = await accountService.update(values.id, {
-                //     ...rest,
-                //     fullName: data.fullName?.trim(),
-                //     email: data.email?.trim(),
-                //     role: data.group,
-                //     avatar:
-                //         file ||
-                //         values?.avatar ||
-                //         'https://res.cloudinary.com/hunre/image/upload/v1676274313/user_ljdkgx.png',
-                //     status: !!data.status,
-                //     isRoot: true,
-                // });
-                // if (res.status) {
-                //     Notification('success', 'Cập nhật tài khoản thành công');
-                //     handleCloseForm();
-                //     formReset();
-                // }
-            } else {
-                const res = await AxiosClient.post('/category', formData, {
+            if (values?.id) {
+                const res: any = await AxiosClient.patch(`/category/${values?.id}`, formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
                     },
                 });
-                console.log('🚀 ~ res:', res);
-                // if (res.status) {
-                //     Notification('success', 'Thêm tài khoản thành công');
-                //     handleCloseForm();
-                //     formReset();
-                // }
+                if (!res?.code) {
+                    Notification('success', 'Cập nhật hãng xe thành công');
+                    handleCloseForm();
+                    formReset();
+                }
+            } else {
+                const res: any = await AxiosClient.post('/category', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                });
+                if (!res?.code) {
+                    Notification('success', 'Thêm hãng xe thành công');
+                    handleCloseForm();
+                    formReset();
+                }
             }
             setLoadingModal(false);
         },
@@ -90,7 +82,7 @@ const CategoryFormPage = ({
 
     return (
         <ModalComponent
-            title={values ? 'Cập nhật danh mục' : 'Thêm danh mục'}
+            title={values ? 'Cập nhật hãng xe' : 'Thêm hãng xe'}
             modalVisible={modalVisible}
             loading={loadingModal}
             width={600}
@@ -102,8 +94,8 @@ const CategoryFormPage = ({
                             <FormItemComponent
                                 rules={[rules.required('Vui lòng nhập tên !')]}
                                 name="name"
-                                label="Tên danh mục"
-                                inputField={<Input placeholder="Nhập tên danh mục" />}
+                                label="Tên hãng xe"
+                                inputField={<Input placeholder="Nhập tên hãng xe" />}
                             />
                         </Row>
                     </Col>
@@ -125,7 +117,7 @@ const CategoryFormPage = ({
                                             form.setFieldsValue({ icon: file });
                                         }}
                                         isShowFileList
-                                        initialFile={values?.icon && [{ url: values?.icon, uid: uuid(), name: 'icon' }]}
+                                        initialFile={values?.logo && [{ url: values?.logo, uid: uuid(), name: 'icon' }]}
                                     />
                                 }
                             />

@@ -28,7 +28,7 @@ export const items: any = [
                 // ],
             },
             {
-                label: 'Danh mục',
+                label: 'Hãng xe',
                 key: 'category',
                 icon: <IconAntd icon="AppstoreOutlined" />,
             },

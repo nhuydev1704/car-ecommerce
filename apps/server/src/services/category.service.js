@@ -16,7 +16,32 @@ const queryCategories = async (filter, options) => {
   return categories;
 };
 
+const getCategoryById = async (id) => {
+  return Category.findById(id);
+};
+
+const updateCategoryById = async (categoryId, updateBody) => {
+  const category = await getCategoryById(categoryId);
+  if (!category) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Category not found');
+  }
+
+  Object.assign(category, updateBody);
+  await category.save();
+  return category;
+};
+
+const deleteCategory = async (categoryId) => {
+  const category = await getCategoryById(categoryId);
+  if (!category) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Category not found');
+  }
+  await category.remove();
+};
+
 module.exports = {
   createCategory,
   queryCategories,
+  updateCategoryById,
+  deleteCategory,
 };

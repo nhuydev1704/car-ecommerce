@@ -46,11 +46,11 @@ const PageLayout = (PageComponent: React.JSXElementConstructor<any>) => {
                                 </CustomScrollbars>
                             </div>
                             {/* footer content */}
-                            <Footer>
+                            {/* <Footer>
                                 <div className="gx-layout-footer-content">
                                     <div className="gx-layout-footer-content">WindsSoft Frontend Team - 2022</div>
                                 </div>
-                            </Footer>
+                            </Footer> */}
                         </Content>
                     </ErrorBoundary>
                 </Layout>

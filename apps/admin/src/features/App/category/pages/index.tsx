@@ -4,15 +4,16 @@ import ClearFilterLoading from '@/components/ClearFilter/ClearFilter.Loading';
 import TableComponent from '@/components/TableComponent';
 import TopBar from '@/components/TopBar';
 import Container from '@/layout/Container';
-import { Button, Segmented } from 'antd';
+import { Button, Popconfirm, Segmented, Space } from 'antd';
 import React from 'react';
 import { useQuery } from 'react-query';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Filter from '../components/Filter.Product';
 import { columnsProduct } from '../components/Product.Config';
 import AxiosClient from '@/apis/AxiosClient';
-import { handleObjectEmpty, wait } from '@/utils';
+import { handleObjectEmpty, Notification, wait } from '@/utils';
 import CategoryFormPage from './Form';
+import IconAntd from '@/components/IconAntd';
 
 const initialFilterQuery = {};
 
@@ -80,7 +81,7 @@ const CategoryPage = () => {
 
     return (
         <>
-            <TopBar title="Danh mục" />
+            <TopBar title="Hãng xe" />
             <Container>
                 <CardComponent
                     title={
@@ -114,8 +115,48 @@ const CategoryPage = () => {
                         rowSelect={false}
                         onChangePage={(_page) => setPage(_page)}
                         dataSource={category ? category.data : []}
-                        columns={columnsProduct(page)}
-                        total={category?.paging?.totalItemCount || 0}
+                        columns={[
+                            ...columnsProduct(page),
+                            {
+                                title: 'Action',
+                                key: 'action',
+                                width: 120,
+                                render: (text, record) => (
+                                    <Space>
+                                        <Button
+                                            size="small"
+                                            type="primary"
+                                            onClick={() => {
+                                                setValues(record);
+                                                setModalVisible(true);
+                                            }}
+                                        >
+                                            <IconAntd icon="EditOutlined" />
+                                        </Button>
+                                        <Popconfirm
+                                            title="Xác nhận xoá"
+                                            onConfirm={() => {
+                                                AxiosClient.delete(`/category/${record.id}`).then(() => {
+                                                    refetch();
+                                                    Notification('success', 'Xoá hãng xe thành công');
+                                                });
+                                            }}
+                                        >
+                                            <Button
+                                                danger
+                                                onClick={() => {
+                                                    // handleDelete(record.id);
+                                                }}
+                                                size="small"
+                                            >
+                                                <IconAntd icon="DeleteOutlined" />
+                                            </Button>
+                                        </Popconfirm>
+                                    </Space>
+                                ),
+                            },
+                        ]}
+                        total={category?.totalResults || 0}
                     />
                 </CardComponent>
             </Container>

@@ -51,7 +51,7 @@ AxiosClient.interceptors.response.use(
                 }
             }
             // cover response to camelCase
-            return camelizeKeys(response.data);
+            return response.data;
         }
 
         return response;

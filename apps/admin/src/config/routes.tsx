@@ -6,6 +6,7 @@ import RegisterPage from '@/features/Auth/Register';
 import CategoryPage from '@/features/App/category/pages';
 import ProductPage from '@/features/App/product/pages';
 import IntroducePage from '@/features/App/introduce/pages';
+import FormProductPage from '@/features/App/product/pages/Form';
 
 // định nghĩa router
 export const routerPage = {
@@ -43,6 +44,14 @@ const PrivateRoutes = [
     {
         path: routerPage.product,
         element: <ProductPage />,
+    },
+    {
+        path: routerPage.product + '/form',
+        element: <FormProductPage />,
+    },
+    {
+        path: routerPage.product + '/form/:id',
+        element: <FormProductPage />,
     },
     {
         path: routerPage.introduce,

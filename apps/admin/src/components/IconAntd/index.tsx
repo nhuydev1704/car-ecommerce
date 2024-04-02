@@ -5,7 +5,7 @@ const IconAntd = ({ icon, props }: { icon: any; props?: any }) => {
     //@ts-ignore
     const AntdIcon = AntdIcons[icon];
 
-    return <AntdIcon style={{ fontSize: '20px' }} {...props} />;
+    return <AntdIcon style={{ fontSize: '14px' }} {...props} />;
 };
 
 export default IconAntd;

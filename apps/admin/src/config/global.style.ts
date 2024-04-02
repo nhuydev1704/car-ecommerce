@@ -59,6 +59,10 @@ const GlobalStyle = createGlobalStyle`
    height: 100%;
   }
 
+  * .ant-upload-list-picture-card .ant-upload-list-item-thumbnail, .ant-upload-list-picture-card .ant-upload-list-item-thumbnail img {
+    object-fit: cover !important;
+  }
+
 `;
 
 export default GlobalStyle;

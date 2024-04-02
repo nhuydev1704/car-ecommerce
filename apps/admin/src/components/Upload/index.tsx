@@ -36,6 +36,7 @@ const UploadComponent: React.FC<IProps> = ({
     disabled,
 }) => {
     const [files, setFiles] = React.useState<UploadFile[]>([]);
+    console.log('🚀 ~ files:', files);
     const [progress, setProgress] = React.useState(0);
     const [visiblePreview, setVisiblePreview] = React.useState(false);
 
@@ -125,7 +126,7 @@ const UploadComponent: React.FC<IProps> = ({
             setFiles(fileList);
         }
         if (file.status !== 'removed') {
-            !isUploadServerWhenUploading && onSuccessUpload(file);
+            !isUploadServerWhenUploading && onSuccessUpload(maxLength > 1 ? fileList : file);
         }
     };
 
@@ -145,6 +146,7 @@ const UploadComponent: React.FC<IProps> = ({
     return (
         <>
             <UploadStyled
+                multiple={maxLength > 1}
                 disabled={disabled}
                 accept={accept}
                 customRequest={uploadImage}

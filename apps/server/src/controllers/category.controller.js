@@ -3,19 +3,25 @@ const pick = require('../utils/pick');
 const ApiError = require('../utils/ApiError');
 const catchAsync = require('../utils/catchAsync');
 const { categoryService } = require('../services');
+const { uploadToCloudinary } = require('../utils/cloudinary');
 
 const createCategory = catchAsync(async (req, res) => {
-  const data = req.body;
-  console.log('🚀 ~ createCategory ~ data:', data);
+  const { name } = req.body;
+  const result = await uploadToCloudinary(req.file);
 
-  // const category = await categoryService.createCategory(req.body);
-  res.status(httpStatus.CREATED).send([]);
+  const category = await categoryService.createCategory({ name, logo: result.secure_url });
+  res.status(httpStatus.CREATED).send(category);
 });
 
 const getCategories = catchAsync(async (req, res) => {
   const filter = pick(req.query, ['name']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
-  const result = await categoryService.queryCategories(filter, options);
+  const result = await categoryService.queryCategories(
+    {
+      name: { $regex: filter.name || '' },
+    },
+    options
+  );
   res.send(result);
 });
 
@@ -27,20 +33,29 @@ const getCategories = catchAsync(async (req, res) => {
 //   res.send(user);
 // });
 
-// const updateUser = catchAsync(async (req, res) => {
-//   const user = await userService.updateUserById(req.params.userId, req.body);
-//   res.send(user);
-// });
+const updateCategory = catchAsync(async (req, res) => {
+  let result;
+  if (req.file) {
+    result = await uploadToCloudinary(req.file);
+  }
 
-// const deleteUser = catchAsync(async (req, res) => {
-//   await userService.deleteUserById(req.params.userId);
-//   res.status(httpStatus.NO_CONTENT).send();
-// });
+  const category = await categoryService.updateCategoryById(req.params.categoryId, {
+    name: req.body.name,
+    logo: result ? result.secure_url : req.body.icon,
+  });
+
+  res.send(category);
+});
+
+const deleteCategory = catchAsync(async (req, res) => {
+  await categoryService.deleteCategory(req.params.categoryId);
+  res.status(httpStatus.NO_CONTENT).send();
+});
 
 module.exports = {
   createCategory,
   getCategories,
   // getUser,
-  // updateUser,
-  // deleteUser,
+  updateCategory,
+  deleteCategory,
 };

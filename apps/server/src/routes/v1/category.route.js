@@ -1,20 +1,28 @@
 const express = require('express');
+const multer = require('multer');
+
 const auth = require('../../middlewares/auth');
-const validate = require('../../middlewares/validate');
 const categoryController = require('../../controllers/category.controller');
-const { categoryValidation } = require('../../validations');
+
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: {
+    fileSize: 2 * 1024 * 1024, // 2 MB
+    files: 1,
+  },
+});
 
 const router = express.Router();
 
 router
   .route('/')
-  .post(auth('getCategories'), categoryController.createCategory)
-  .get(auth('getCategories'), validate(categoryValidation.getCategories), categoryController.getCategories);
+  .post(auth('getCategories'), upload.single('icon'), categoryController.createCategory)
+  .get(auth('getCategories'), categoryController.getCategories);
 
-// router
-//   .route('/:userId')
-//   .get(auth('getUsers'), validate(userValidation.getUser), userController.getUser)
-//   .patch(auth('manageUsers'), validate(userValidation.updateUser), userController.updateUser)
-//   .delete(auth('manageUsers'), validate(userValidation.deleteUser), userController.deleteUser);
+router
+  .route('/:categoryId')
+  // .get(auth('getUsers'), validate(userValidation.getUser), userController.getUser)
+  .patch(auth('getCategories'), upload.single('icon'), categoryController.updateCategory)
+  .delete(auth('getCategories'), categoryController.deleteCategory);
 
 module.exports = router;

@@ -3,23 +3,124 @@
 @tailwind utilities;
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
     font-family: 'Quicksand', sans-serif !important;
-  
 }
 
 html,
 body,
 #root {
-  width: 100%;
-  height: 100vh;
-  margin: 0;
-  padding: 0;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  background: white;
+    background: white;
 }
 .Toastify__toast-container {
-  z-index: 9999999999 !important;
+    z-index: 9999999999 !important;
+}
+
+.content {
+    width: 100%;
+    overflow: hidden;
+    font-size: 16px;
+}
+
+/* line-height: 22px; */
+/* Định dạng chữ cho phần tiêu đề */
+.content h1,
+.content h2,
+.content h3,
+.content h4,
+.content h5,
+.content h6 {
+    font-weight: bold;
+    color: #333;
+    line-height: 40px;
+    font-size: 20px;
+}
+
+/* Định dạng cho đoạn văn bản */
+.content p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0 0 15px;
+}
+
+/* Định dạng cho đoạn văn bản in đậm */
+.content strong {
+    font-weight: bold;
+}
+
+/* Định dạng cho đoạn văn bản nghiêng */
+.content em {
+    font-style: italic;
+}
+
+/* Định dạng cho liên kết */
+.content a {
+    color: #007bff;
+    text-decoration: underline;
+}
+
+/* Định dạng cho danh sách không có thứ tự */
+.content ul {
+    margin: 0 0 15px;
+    padding-left: 20px;
+    list-style: inherit;
+}
+
+/* Định dạng cho mỗi mục trong danh sách không có thứ tự */
+.content li {
+    margin: 0 0 5px;
+}
+
+/* Định dạng cho danh sách có thứ tự */
+.content ol {
+    margin: 0 0 15px;
+    padding-left: 20px;
+    list-style: inherit;
+}
+
+/* Định dạng cho mỗi mục trong danh sách có thứ tự */
+.content li {
+    margin: 0 0 5px;
+}
+
+/* Định dạng cho các trích dẫn */
+.content blockquote {
+    font-style: italic;
+    margin: 0 0 15px;
+    padding: 10px;
+    border-left: 3px solid #007bff;
+}
+
+.content table {
+    width: 100%;
+}
+
+.content table,
+.content th,
+.content td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+.content th,
+.content td {
+    padding: 10px;
+}
+.content table p {
+    margin-bottom: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .content img {
+        object-fit: cover;
+        width: auto !important;
+        height: auto !important;
+        /* aspect-ratio: 16/9 !important; */
+    }
 }

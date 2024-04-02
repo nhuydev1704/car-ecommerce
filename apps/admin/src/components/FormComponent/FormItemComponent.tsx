@@ -24,7 +24,8 @@ const FormItemComponent = ({
     extra?: any;
     style?: any;
     normalize?: any;
-    props?: { dependencies: any };
+    labelCol?: any;
+    props?: { dependencies: any; labelCol?: any };
 }) => {
     return (
         <Col span={grid ? 12 : 24}>
