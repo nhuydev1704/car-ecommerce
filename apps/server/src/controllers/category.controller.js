@@ -5,16 +5,19 @@ const catchAsync = require('../utils/catchAsync');
 const { categoryService } = require('../services');
 
 const createCategory = catchAsync(async (req, res) => {
-  const category = await categoryService.createCategory(req.body);
-  res.status(httpStatus.CREATED).send(category);
+  const data = req.body;
+  console.log('🚀 ~ createCategory ~ data:', data);
+
+  // const category = await categoryService.createCategory(req.body);
+  res.status(httpStatus.CREATED).send([]);
 });
 
-// const getUsers = catchAsync(async (req, res) => {
-//   const filter = pick(req.query, ['name', 'role']);
-//   const options = pick(req.query, ['sortBy', 'limit', 'page']);
-//   const result = await userService.queryUsers(filter, options);
-//   res.send(result);
-// });
+const getCategories = catchAsync(async (req, res) => {
+  const filter = pick(req.query, ['name']);
+  const options = pick(req.query, ['sortBy', 'limit', 'page']);
+  const result = await categoryService.queryCategories(filter, options);
+  res.send(result);
+});
 
 // const getUser = catchAsync(async (req, res) => {
 //   const user = await userService.getUserById(req.params.userId);
@@ -36,7 +39,7 @@ const createCategory = catchAsync(async (req, res) => {
 
 module.exports = {
   createCategory,
-  // getUsers,
+  getCategories,
   // getUser,
   // updateUser,
   // deleteUser,

@@ -7,7 +7,7 @@ export const items: any = [
         children: [
             {
                 label: 'Dashboard',
-                key: 'dashboard',
+                key: '',
                 icon: <IconAntd icon="DashboardOutlined" />,
                 // children: [
                 //     {

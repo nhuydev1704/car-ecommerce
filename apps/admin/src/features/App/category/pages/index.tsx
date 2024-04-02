@@ -12,6 +12,7 @@ import Filter from '../components/Filter.Product';
 import { columnsProduct } from '../components/Product.Config';
 import AxiosClient from '@/apis/AxiosClient';
 import { handleObjectEmpty, wait } from '@/utils';
+import CategoryFormPage from './Form';
 
 const initialFilterQuery = {};
 
@@ -23,7 +24,8 @@ const CategoryPage = () => {
     const [page, setPage] = React.useState(1);
     const [loadingClearFilter, setLoadingClearFilter] = React.useState(false);
     const [loadingExcel, setLoadingExcel] = React.useState<boolean>(false);
-
+    const [modalVisible, setModalVisible] = React.useState(false);
+    const [values, setValues] = React.useState<any | null>(null);
     const {
         data: category,
         isRefetching,
@@ -67,6 +69,15 @@ const CategoryPage = () => {
         });
     };
 
+    const handleCloseForm = React.useCallback((trick = '') => {
+        setValues(null);
+        setModalVisible(false);
+        if (trick === 'notRefresh') return;
+        refetch();
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     return (
         <>
             <TopBar title="Danh mục" />
@@ -79,7 +90,16 @@ const CategoryPage = () => {
                             <Filter params={filterQuery} returnFilter={returnFilter} key="filterCategory" />
                         )
                     }
-                    extra={<Button type="primary">Thêm mới</Button>}
+                    extra={
+                        <Button
+                            onClick={() => {
+                                setModalVisible(true);
+                            }}
+                            type="primary"
+                        >
+                            Thêm mới
+                        </Button>
+                    }
                 >
                     <TableComponent
                         reLoadData={() => refetch()}
@@ -107,6 +127,7 @@ const CategoryPage = () => {
                 }
                 onClick={onClearFilter}
             />
+            <CategoryFormPage modalVisible={modalVisible} values={values} handleCloseForm={handleCloseForm} />
         </>
     );
 };

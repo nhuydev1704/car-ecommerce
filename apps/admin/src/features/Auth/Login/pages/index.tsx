@@ -14,7 +14,7 @@ const LoginPage = () => {
 
         AxiosClient.post('/auth/login', value)
             .then((res: any) => {
-                LocalStorage.setToken(res.tokens.access.access);
+                LocalStorage.setToken(res.tokens.access.token);
                 window.location.reload();
                 Notification('success', 'Đăng nhập thành công');
             })

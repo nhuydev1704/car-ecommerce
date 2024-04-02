@@ -28,12 +28,12 @@ const PublicRoutes = [{ path: '*', element: <NotFoundPage /> }];
 
 // private router khi đã đăng nhập
 const PrivateRoutes = [
+    // {
+    //     path: routerPage.home,
+    //     element: <HomePage />,
+    // },
     {
         path: routerPage.home,
-        element: <HomePage />,
-    },
-    {
-        path: routerPage.dashboard,
         element: <HomePage />,
     },
     {

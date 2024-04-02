@@ -13,10 +13,11 @@ const AxiosClient = axios.create({
 // handle request to convert all api requests to snake_case
 AxiosClient.interceptors.request.use(async (config: AxiosRequestConfig) => {
     const token = LocalStorage.getToken();
+    console.log('🚀 ~ AxiosClient.interceptors.request.use ~ token:', token);
 
     const newConfig = { ...config };
     if (token && newConfig.headers) {
-        newConfig.headers.token = `${token}`;
+        newConfig.headers.Authorization = `Bearer ${token}`;
     }
 
     if (newConfig.headers && newConfig.headers['Content-Type'] === 'multipart/form-data') return newConfig;
