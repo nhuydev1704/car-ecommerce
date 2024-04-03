@@ -187,7 +187,22 @@ const FormProductPage = () => {
                         <Col xs={24} sm={24} lg={12}>
                             <Row>
                                 <FormItemComponent
-                                    rules={[rules.required('Vui lòng chọn ảnh xe!')]}
+                                    rules={[
+                                        rules.required('Tối thiểu 5 ảnh!'),
+                                        {
+                                            validator: async (_: any, value: any) => {
+                                                console.log('🚀 ~ validator: ~ value:', value);
+                                                if (value?.length < 5) {
+                                                    return Promise.reject('Tối thiểu 5 ảnh!');
+                                                }
+
+                                                if (value?.length > 10) {
+                                                    return Promise.reject('Tối đa 10 ảnh!');
+                                                }
+                                                return Promise.resolve();
+                                            },
+                                        },
+                                    ]}
                                     name="file"
                                     label={<div>Ảnh sản phẩm</div>}
                                     inputField={
@@ -197,11 +212,12 @@ const FormProductPage = () => {
                                             initialFile={fileEdit.current}
                                             uploadType="list"
                                             listType="picture-card"
-                                            maxLength={5}
+                                            maxLength={10}
                                             onSuccessUpload={(url: any) => {
-                                                form.setFieldsValue({
-                                                    file: url,
-                                                });
+                                                // form.setFieldsValue({
+                                                //     file: url,
+                                                // });
+                                                form.setFieldValue('file', url);
                                             }}
                                         >
                                             Tải lên
@@ -236,7 +252,7 @@ const FormProductPage = () => {
                                     <NewsEditor
                                         height={400}
                                         handleCallbackContent={handleCallbackAttribute}
-                                        handleCallbackContentNotDebounce={() => { }}
+                                        handleCallbackContentNotDebounce={() => {}}
                                         refContent={refAttribute.current}
                                     />
                                 </Form.Item>
@@ -249,7 +265,7 @@ const FormProductPage = () => {
                         <Form.Item wrapperCol={{ span: 24 }} name="description">
                             <NewsEditor
                                 handleCallbackContent={handleCallbackContent}
-                                handleCallbackContentNotDebounce={() => { }}
+                                handleCallbackContentNotDebounce={() => {}}
                                 refContent={refContent.current}
                             />
                         </Form.Item>

@@ -107,7 +107,7 @@ const UploadComponent: React.FC<IProps> = ({
     const handleOnChange: UploadProps['onChange'] = ({ file, fileList, event }: any) => {
         // check size > 2mb reject
         if (file?.type === 'image/png' || file?.type === 'image/jpeg' || file?.type === 'image/jpg') {
-            if (file?.size > 2 * 1024 * 1024) {
+            if (file?.size > 2 * 1024 * 1024 && file.status !== 'removed') {
                 file.status = 'error';
 
                 return Notification('warning', 'Vui lòng tải ảnh có dung lượng ảnh nhỏ hơn 2 MB');
