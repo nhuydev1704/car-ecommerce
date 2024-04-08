@@ -16,7 +16,7 @@ const router = express.Router();
 router
   .route('/')
   .post(auth('getProducts'), upload.array('file', 5), productController.createProduct)
-  .get(auth('getProducts'), productController.getProducts);
+  .get(productController.getProducts);
 
 router
   .route('/:productId')

@@ -17,7 +17,7 @@ const router = express.Router();
 router
   .route('/')
   .post(auth('getCategories'), upload.single('icon'), categoryController.createCategory)
-  .get(auth('getCategories'), categoryController.getCategories);
+  .get(categoryController.getCategories);
 
 router
   .route('/:categoryId')
