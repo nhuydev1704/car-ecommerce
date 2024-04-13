@@ -5,22 +5,35 @@ import React from 'react';
 import ProductItem from './Product.Item';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Button } from '@/components/ui/button';
+import { useSearchParams } from 'next/navigation';
+import IconEmpty from '@/icons/IconEmpty';
 
 const Product = () => {
+    const searchParams = useSearchParams();
+
     const [loading, setLoading] = React.useState(true);
     const [products, setProducts] = React.useState([]);
 
     React.useEffect(() => {
         setLoading(true);
-        AxiosClient.get('/product')
+        AxiosClient.get('/product', {
+            params: {
+                category_id: searchParams.get('category_id'),
+            },
+        })
             .then((res) => {
                 setProducts(res.data);
             })
             .finally(() => setLoading(false));
-    }, []);
+    }, [searchParams.get('category_id')]);
 
     return (
         <div>
+            {!loading && products.length === 0 && (
+                <div className="flex justify-center items-center py-[80px]">
+                    <IconEmpty />
+                </div>
+            )}
             <div className="grid w-full max-w-screen-xl grid-cols-4 gap-[15px] mt-[40px]">
                 {loading
                     ? [...new Array(8)].map((_, index) => (
@@ -34,7 +47,8 @@ const Product = () => {
                       ))
                     : products.map((product: any) => <ProductItem key={product.id} product={product} />)}
             </div>
-            {!loading && (
+
+            {!loading && products.length > 12 && (
                 <div className="flex justify-center mt-[40px]">
                     <Button>Xem thêm</Button>
                 </div>

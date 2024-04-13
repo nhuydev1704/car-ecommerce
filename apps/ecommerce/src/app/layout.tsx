@@ -6,6 +6,7 @@ import '@fontsource/quicksand/700.css';
 import { cn } from '@/lib/utils';
 import Header from '@/components/app/Header/Header';
 import Footer from '@/components/app/Footer/Footer';
+import { Toaster } from '@/components/ui/sonner';
 
 export const metadata: Metadata = {
     title: 'Create Next App',
@@ -26,6 +27,7 @@ export default function RootLayout({
                     <main className="flex-1 w-full overflow-x-hidden">{children}</main>
                     <Footer />
                 </div>
+                <Toaster />
             </body>
         </html>
     );

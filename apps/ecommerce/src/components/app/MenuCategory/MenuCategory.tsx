@@ -8,6 +8,11 @@ import useDrag from '@/hooks/useDrag';
 import { LeftArrow, RightArrow } from './Arrow';
 import AxiosClient from '@/apis/AxiosClient';
 import { Skeleton } from '@/components/ui/skeleton';
+import { IconJarLogoIcon } from '@radix-ui/react-icons';
+import { CarIcon, SlidersHorizontal } from 'lucide-react';
+import { twMerge } from 'tailwind-merge';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import clsx from 'clsx';
 
 function onWheel(apiObj: any, ev: React.WheelEvent): void {
     const isThouchpad = Math.abs(ev.deltaX) !== 0 || Math.abs(ev.deltaY) < 15;
@@ -25,6 +30,12 @@ function onWheel(apiObj: any, ev: React.WheelEvent): void {
 }
 
 const MenuCategory = () => {
+    const router = useRouter();
+    const pathname = usePathname();
+
+    const searchParams = useSearchParams();
+    console.log('🚀 ~ MenuCategory ~ search:');
+
     const [loading, setLoading] = React.useState(true);
     const [categories, setCategories] = React.useState([]);
 
@@ -68,26 +79,56 @@ const MenuCategory = () => {
                     scrollContainerClassName="gap-2 overflow-hidden"
                     Footer={<div />}
                 >
-                    {categories.map(({ id, name, logo }: any) => (
+                    {[
+                        {
+                            id: '',
+                            name: 'Tất cả',
+                            logo: <SlidersHorizontal className="h-[45px] w-[30px]" />,
+                        },
+                        ...categories,
+                    ].map(({ id, name, logo }: any) => (
                         <div
                             aria-hidden
-                            onClick={() => {}}
-                            className="hover:bg-gray-50 transition-all rounded-2xl flex relative cursor-pointer select-none flex-col items-center  py-[10px]"
+                            onClick={() => {
+                                // now you got a read/write object
+                                const current = new URLSearchParams(Array.from(searchParams.entries())); // -> has to use this form
+
+                                // update as necessary
+                                const value = id;
+
+                                if (!value) {
+                                    current.delete('category_id');
+                                } else {
+                                    current.set('category_id', id);
+                                }
+
+                                // cast to string
+                                const search = current.toString();
+                                // or const query = `${'?'.repeat(search.length && 1)}${search}`;
+                                const query = search ? `?${search}` : '';
+
+                                router.push(`${pathname}${query}`, { scroll: false });
+                            }}
+                            className={clsx(
+                                'hover:bg-gray-50 transition-all rounded-2xl flex relative cursor-pointer select-none flex-col items-center py-[10px]',
+                                {
+                                    'bg-sky-100': (searchParams.get('category_id') || '') === id,
+                                }
+                            )}
                             key={id}
                         >
                             <div className="w-[40px] flex justify-center md:w-[160px]">
-                                <img
-                                    alt={name}
-                                    className="pointer-events-none object-cover aspect-square h-[45px] rounded-2xl"
-                                    src={logo}
-                                />
+                                {id ? (
+                                    <img
+                                        alt={name}
+                                        className="pointer-events-none object-cover aspect-square h-[45px] rounded-2xl"
+                                        src={logo}
+                                    />
+                                ) : (
+                                    logo
+                                )}
                             </div>
                             <p className="mt-2 text-center text-[14px] font-semibold text-[#333]">{name}</p>
-                            {/* <div className="absolute left-2.5 top-2.5 z-10 flex items-center justify-center leading-none">
-                            <span className="rounded-[5px] border bg-white px-2.5 py-1.5 text-xs font-semibold leading-none text-neutral-800">
-                                {name}
-                            </span>
-                        </div> */}
                         </div>
                     ))}
                 </ScrollMenu>

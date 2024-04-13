@@ -20,7 +20,7 @@ router
 
 router
   .route('/:productId')
-  .get(auth('getProducts'), productController.getProduct)
+  .get(productController.getProduct)
   .patch(auth('getProducts'), upload.array('file', 5), productController.updateProduct)
   .delete(auth('getProducts'), productController.deleteProduct);
 
