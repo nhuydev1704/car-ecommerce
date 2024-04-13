@@ -11,6 +11,7 @@ import {
     navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
 import { usePathname } from 'next/navigation';
+import clsx from 'clsx';
 
 const Header = () => {
     const pathname = usePathname();
@@ -29,7 +30,13 @@ const Header = () => {
                                         active={pathname === '/'}
                                         className={navigationMenuTriggerStyle()}
                                     >
-                                        Trang chủ
+                                        <span
+                                            className={clsx({
+                                                'font-bold': pathname === '/',
+                                            })}
+                                        >
+                                            Trang chủ
+                                        </span>
                                     </NavigationMenuLink>
                                 </Link>
                             </NavigationMenuItem>
@@ -39,7 +46,29 @@ const Header = () => {
                                         active={pathname === '/gioi-thieu'}
                                         className={navigationMenuTriggerStyle()}
                                     >
-                                        Giới thiệu
+                                        <span
+                                            className={clsx({
+                                                'font-bold': pathname === '/gioi-thieu',
+                                            })}
+                                        >
+                                            Giới thiệu
+                                        </span>
+                                    </NavigationMenuLink>
+                                </Link>
+                            </NavigationMenuItem>
+                            <NavigationMenuItem>
+                                <Link href="/lien-he" legacyBehavior passHref>
+                                    <NavigationMenuLink
+                                        active={pathname === '/lien-he'}
+                                        className={navigationMenuTriggerStyle()}
+                                    >
+                                        <span
+                                            className={clsx({
+                                                'font-bold': pathname === '/lien-he',
+                                            })}
+                                        >
+                                            Liên hệ
+                                        </span>
                                     </NavigationMenuLink>
                                 </Link>
                             </NavigationMenuItem>

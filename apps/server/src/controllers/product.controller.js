@@ -25,8 +25,8 @@ const getProducts = catchAsync(async (req, res) => {
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
   const result = await productService.queryProducts(
     {
-      name: { $regex: filter.name || '' },
       ...filter,
+      name: { $regex: new RegExp(filter.name || '', 'i') },
     },
     options
   );

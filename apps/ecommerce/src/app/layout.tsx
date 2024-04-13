@@ -7,6 +7,8 @@ import { cn } from '@/lib/utils';
 import Header from '@/components/app/Header/Header';
 import Footer from '@/components/app/Footer/Footer';
 import { Toaster } from '@/components/ui/sonner';
+import NextTopLoader from 'nextjs-toploader';
+
 
 export const metadata: Metadata = {
     title: 'Create Next App',
@@ -22,6 +24,7 @@ export default function RootLayout({
         <html lang="en" suppressHydrationWarning>
             <head />
             <body className={cn('bg-background font-[Quicksand] antialiased')}>
+                <NextTopLoader />
                 <div className="relative flex min-h-screen flex-col">
                     <Header />
                     <main className="flex-1 w-full overflow-x-hidden">{children}</main>

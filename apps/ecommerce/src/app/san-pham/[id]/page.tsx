@@ -77,7 +77,7 @@ async function DetailProductPage() {
                     </BreadcrumbItem>
                     <BreadcrumbSeparator />
                     <BreadcrumbItem>
-                        <BreadcrumbPage>{productDetail.name}</BreadcrumbPage>
+                        <BreadcrumbPage className="font-bold">{productDetail.name}</BreadcrumbPage>
                     </BreadcrumbItem>
                 </BreadcrumbList>
             </Breadcrumb>
@@ -93,13 +93,15 @@ async function DetailProductPage() {
                     }}
                 />
                 <Separator className="mt-4 md:hidden" />
-                <div className="flex w-full flex-col gap-4 md:w-2/3">
+                <div className="flex w-full flex-col gap-4 md:w-1/2">
                     <div className="space-y-2">
                         <div className="flex justify-between">
                             <h2 className="line-clamp-1 text-2xl font-bold">{productDetail?.name}</h2>
                             <UpdateProductRatingButton productId={'14'} rating={4} />
                         </div>
-                        <p className="text-base text-muted-foreground">{formatPrice(productDetail.price)}</p>
+                        <p className="font-bold mt-[4px] text-[22px] text-red-500">
+                            {formatPrice(productDetail.price)}
+                        </p>
                     </div>
                     <Separator />
                     <Accordion type="single" collapsible className="w-full" defaultValue="description">

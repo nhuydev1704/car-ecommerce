@@ -1,6 +1,5 @@
 'use client';
 
-import AxiosClient from '@/apis/AxiosClient';
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -10,20 +9,11 @@ import {
     BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
 import Link from 'next/link';
-import React from 'react';
 
-const IntroducePage = () => {
-    const [introduce, setIntroduce] = React.useState('');
-
-    React.useEffect(() => {
-        AxiosClient.get('/introduce').then((response: any) => {
-            setIntroduce(response.content);
-        });
-    }, []);
-
+const ContactPage = () => {
     return (
         <div className="flex py-[20px] justify-center">
-            <div className="max-w-screen-xl space-y-4">
+            <div className="max-w-screen-xl w-full space-y-4">
                 <Breadcrumb>
                     <BreadcrumbList>
                         <BreadcrumbItem>
@@ -33,14 +23,14 @@ const IntroducePage = () => {
                         </BreadcrumbItem>
                         <BreadcrumbSeparator />
                         <BreadcrumbItem>
-                            <BreadcrumbPage className="font-bold">Giới thiệu</BreadcrumbPage>
+                            <BreadcrumbPage className="font-bold">Liên hệ</BreadcrumbPage>
                         </BreadcrumbItem>
                     </BreadcrumbList>
                 </Breadcrumb>
-                <div className="content" dangerouslySetInnerHTML={{ __html: introduce }} />
+                <div>demo</div>
             </div>
         </div>
     );
 };
 
-export default IntroducePage;
+export default ContactPage;

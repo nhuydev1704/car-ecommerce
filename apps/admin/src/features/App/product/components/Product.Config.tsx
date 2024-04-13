@@ -1,4 +1,5 @@
 import { RECORD_SIZE } from '@/config/theme';
+import { currencyFormat } from '@/utils';
 import { Image, Space } from 'antd';
 import { ColumnsType } from 'antd/lib/table';
 
@@ -22,6 +23,7 @@ export const columnsProduct = (page: number): ColumnsType<any> => [
     {
         title: 'Giá',
         dataIndex: 'price',
+        render: (value) => currencyFormat(value),
     },
     {
         title: 'Hình ảnh',
