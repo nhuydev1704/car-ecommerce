@@ -7,6 +7,7 @@ import CategoryPage from '@/features/App/category/pages';
 import ProductPage from '@/features/App/product/pages';
 import IntroducePage from '@/features/App/introduce/pages';
 import FormProductPage from '@/features/App/product/pages/Form';
+import ContactPage from '@/features/App/contact/pages';
 
 // định nghĩa router
 export const routerPage = {
@@ -19,6 +20,7 @@ export const routerPage = {
     category: '/category',
     product: '/product',
     introduce: '/introduce',
+    contact: '/contact',
     // auth....
     login: '/auth/login',
     register: '/auth/register',
@@ -56,6 +58,10 @@ const PrivateRoutes = [
     {
         path: routerPage.introduce,
         element: <IntroducePage />,
+    },
+    {
+        path: routerPage.contact,
+        element: <ContactPage />,
     },
     {
         path: routerPage.customer,

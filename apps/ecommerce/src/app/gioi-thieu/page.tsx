@@ -1,16 +1,10 @@
 'use client';
 
 import AxiosClient from '@/apis/AxiosClient';
-import {
-    Breadcrumb,
-    BreadcrumbItem,
-    BreadcrumbLink,
-    BreadcrumbList,
-    BreadcrumbPage,
-    BreadcrumbSeparator,
-} from '@/components/ui/breadcrumb';
-import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import React from 'react';
+
+const BreadcrumbComponent = dynamic(() => import('@/components/app/BreadcrumbComponent'));
 
 const IntroducePage = () => {
     const [introduce, setIntroduce] = React.useState('');
@@ -23,22 +17,12 @@ const IntroducePage = () => {
 
     return (
         <div className="flex py-[20px] justify-center">
-            <div className="max-w-screen-xl space-y-4">
-                <Breadcrumb>
-                    <BreadcrumbList>
-                        <BreadcrumbItem>
-                            <BreadcrumbLink>
-                                <Link href="/">Trang chủ</Link>
-                            </BreadcrumbLink>
-                        </BreadcrumbItem>
-                        <BreadcrumbSeparator />
-                        <BreadcrumbItem>
-                            <BreadcrumbPage className="font-bold">Giới thiệu</BreadcrumbPage>
-                        </BreadcrumbItem>
-                    </BreadcrumbList>
-                </Breadcrumb>
-                <div className="content" dangerouslySetInnerHTML={{ __html: introduce }} />
-            </div>
+            {introduce && (
+                <div className="max-w-screen-xl space-y-4">
+                    <BreadcrumbComponent title="Giới thiệu" />
+                    <div className="content" dangerouslySetInnerHTML={{ __html: introduce }} />
+                </div>
+            )}
         </div>
     );
 };

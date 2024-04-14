@@ -42,6 +42,11 @@ export const items: any = [
                 key: 'introduce',
                 icon: <IconAntd icon="InfoCircleOutlined" />,
             },
+            {
+                label: 'Liên hệ',
+                key: 'contact',
+                icon: <IconAntd icon="ContactsOutlined" />,
+            },
         ],
     },
 ];
