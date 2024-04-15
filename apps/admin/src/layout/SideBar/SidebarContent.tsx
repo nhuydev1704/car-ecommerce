@@ -23,11 +23,7 @@ const SidebarContent = ({
 
     return (
         <>
-            <Row
-                align="middle"
-                className="gx-m-0 gx-layout-sider-header"
-                style={{ background: '#BB0D0D', padding: '0 30px 0 70px' }}
-            >
+            <Row align="middle" className="gx-m-0 gx-layout-sider-header">
                 {!collapsed && (
                     <Link
                         className="gx-d-flex gx-pointer"
@@ -37,7 +33,15 @@ const SidebarContent = ({
                             width: '100%',
                         }}
                     >
-                        <img height="72px" alt="" src={icon} />
+                        <img
+                            height="54px"
+                            style={{
+                                borderRadius: '999px',
+                                overflow: 'hidden',
+                            }}
+                            alt=""
+                            src={icon}
+                        />
                     </Link>
                 )}
                 <div className="gx-linebar" onClick={handleCallbackCollapsed}>
