@@ -17,22 +17,20 @@ const QA = () => {
                     <dl className="space-y-10 lg:grid lg:grid-cols-2 lg:gap-x-8 lg:gap-y-10 lg:space-y-0">
                         <div>
                             <dt className="font-semibold text-white">
-                                Auto Chốt Có Cho Phép Lái Thử Xe Để Kiểm Tra Khả Năng Vận Hành Và Các Trang Bị Kỹ Hơn
-                                Không?
+                                Có cho phép lái thử xe để kiểm tra khả năng vận hành và các trang bị kĩ hơn không?
                             </dt>
                             <dd className="mt-3 text-gray-400">
-                                Quý khách hàng hoàn toàn có thể hẹn trước để đăng ký lái thử, vui lòng liên hệ trực tiếp
-                                với chúng tôi
+                                Quý khách hoàn toàn có thể đến lái thử và trải nghiệm xe
                             </dd>
                         </div>
 
                         <div>
                             <dt className="font-semibold text-white">
-                                Showroom Có Cho Phép Đem Xe Đến Bên Thứ Ba Để Kiểm Tra, Thẩm Định Không?
+                                Có cho phép đem xe đến bên thứ 3 để kiểm tra và thẩm định không?
                             </dt>
                             <dd className="mt-3 text-gray-400">
                                 Quý khách hàng hoàn toàn có thể đem xe đến bên thứ 3 như garage, đại lý chính hãng để
-                                thẩm định và đánh giá được tình trạng xe chính xác hơn
+                                thẩm định và đánh giá được tình trạng xe chính xác hơn.
                             </dd>
                         </div>
 
@@ -46,35 +44,12 @@ const QA = () => {
 
                         <div>
                             <dt className="font-semibold text-white">
-                                Auto Chốt Có Cung Cấp Dịch Vụ Giao Xe Tận Nơi Không?
-                            </dt>
-                            <dd className="mt-3 text-gray-400">
-                                Chúng tôi sẵn sàng cung cấp dịch vụ giao xe tận nơi cho các các quý khách hàng có nhu
-                                cầu
-                            </dd>
-                        </div>
-
-                        <div>
-                            <dt className="font-semibold text-white">Liên Hệ Với Auto Chốt Qua Kênh Nào?</dt>
-                            <dd className="mt-3 text-gray-400">
-                                1. Thông qua số hot-line: 0935898998
-                                <br />
-                                2. Thông qua website
-                                <br />
-                                3. Email: k2k.vn.luxury@gmail.com
-                            </dd>
-                        </div>
-
-                        <div>
-                            <dt className="font-semibold text-white">
                                 Các Hình Thức Thanh Toán Khi Sử Dụng Dịch Vụ Của Auto Chốt?
                             </dt>
                             <dd className="mt-3 text-gray-400">
                                 1. Tiền mặt
                                 <br />
-                                2. Thẻ
-                                <br />
-                                3. Chuyển khoản
+                                2. Chuyển khoản
                             </dd>
                         </div>
                     </dl>
