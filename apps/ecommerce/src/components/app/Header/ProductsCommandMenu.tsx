@@ -1,23 +1,15 @@
 'use client';
 
-import * as React from 'react';
-import { useRouter } from 'next/navigation';
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
+import { useRouter } from 'next/navigation';
+import * as React from 'react';
 
-import { cn, formatPrice, isMacOs } from '@/lib/utils';
-import { Button } from '@/components/ui/button';
-import {
-    CommandDialog,
-    CommandEmpty,
-    CommandGroup,
-    CommandInput,
-    CommandItem,
-    CommandList,
-} from '@/components/ui/command';
-import { Skeleton } from '@/components/ui/skeleton';
-import { BoxIcon } from 'lucide-react';
-import { useDebounce } from '@/hooks/use-debounce';
 import AxiosClient from '@/apis/AxiosClient';
+import { Button } from '@/components/ui/button';
+import { CommandDialog, CommandEmpty, CommandInput, CommandList } from '@/components/ui/command';
+import { Skeleton } from '@/components/ui/skeleton';
+import { useDebounce } from '@/hooks/use-debounce';
+import { cn, currencyFormat } from '@/lib/utils';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 type ProductGroup = NonNullable<Awaited<ReturnType<any>>['data']>[number];
@@ -127,7 +119,9 @@ export function ProductsCommandMenu() {
                                     </div>
                                     <div className="flex flex-col">
                                         <span className="truncate font-bold">{product.name}</span>
-                                        <p className="font-bold mt-[4px] text-red-500">{formatPrice(product.price)}</p>
+                                        <p className="font-bold mt-[4px] text-red-500">
+                                            {currencyFormat(product.price)} VND
+                                        </p>
                                     </div>
                                 </div>
                             ))}

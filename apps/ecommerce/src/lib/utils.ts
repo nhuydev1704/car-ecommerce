@@ -19,3 +19,7 @@ export function formatPrice(price: number | string, options: Intl.NumberFormatOp
         ...options,
     }).format(Number(price));
 }
+
+export const currencyFormat = (number: number) => {
+    return number?.toString()?.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
+};

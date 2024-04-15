@@ -5,28 +5,28 @@ export const items: any = [
         label: 'Trang chủ',
         type: 'group',
         children: [
-            {
-                label: 'Dashboard',
-                key: '',
-                icon: <IconAntd icon="DashboardOutlined" />,
-                // children: [
-                //     {
-                //         label: 'Khách hàng',
-                //         key: 'customer',
-                //         icon: <IconAntd icon="HomeOutlined" />,
-                //     },
-                //     {
-                //         label: 'CRM',
-                //         key: 'main/dashboard/crm',
-                //         icon: <IconAntd icon="HomeOutlined" />,
-                //     },
-                //     {
-                //         label: 'Listing',
-                //         key: 'main/dashboard/listing',
-                //         icon: <IconAntd icon="HomeOutlined" />,
-                //     },
-                // ],
-            },
+            // {
+            //     label: 'Dashboard',
+            //     key: '',
+            //     icon: <IconAntd icon="DashboardOutlined" />,
+            //     // children: [
+            //     //     {
+            //     //         label: 'Khách hàng',
+            //     //         key: 'customer',
+            //     //         icon: <IconAntd icon="HomeOutlined" />,
+            //     //     },
+            //     //     {
+            //     //         label: 'CRM',
+            //     //         key: 'main/dashboard/crm',
+            //     //         icon: <IconAntd icon="HomeOutlined" />,
+            //     //     },
+            //     //     {
+            //     //         label: 'Listing',
+            //     //         key: 'main/dashboard/listing',
+            //     //         icon: <IconAntd icon="HomeOutlined" />,
+            //     //     },
+            //     // ],
+            // },
             {
                 label: 'Hãng xe',
                 key: 'category',

@@ -13,14 +13,11 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb';
-import { ScrollArea } from '@/components/ui/scroll-area';
 import { Separator } from '@/components/ui/separator';
-import { UpdateProductRatingButton } from '@/components/update-product-rating-button';
-import { formatPrice } from '@/lib/utils';
+import { currencyFormat } from '@/lib/utils';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import React from 'react';
-import { Rating } from 'react-simple-star-rating';
 
 // eslint-disable-next-line @next/next/no-async-client-component
 async function DetailProductPage() {
@@ -97,10 +94,10 @@ async function DetailProductPage() {
                     <div className="space-y-2">
                         <div className="flex justify-between">
                             <h2 className="line-clamp-1 text-2xl font-bold">{productDetail?.name}</h2>
-                            <UpdateProductRatingButton productId={'14'} rating={4} />
+                            {/* <UpdateProductRatingButton productId={'14'} rating={4} /> */}
                         </div>
                         <p className="font-bold mt-[4px] text-[22px] text-red-500">
-                            {formatPrice(productDetail.price)}
+                            {currencyFormat(productDetail.price)} VND
                         </p>
                     </div>
                     <Separator />

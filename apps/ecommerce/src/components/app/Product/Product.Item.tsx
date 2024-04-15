@@ -1,14 +1,12 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { ArrowRightIcon, SunIcon } from '@radix-ui/react-icons';
-import Image from 'next/image';
+import { currencyFormat } from '@/lib/utils';
+import { ArrowRightIcon } from '@radix-ui/react-icons';
+import { useRouter } from 'next/navigation';
 import React from 'react';
-import { Rating } from 'react-simple-star-rating';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import { useRouter } from 'next/navigation';
-import { formatPrice } from '@/lib/utils';
 
 const ProductItem = ({ product }: { product: any }) => {
     const router = useRouter();
@@ -44,7 +42,7 @@ const ProductItem = ({ product }: { product: any }) => {
                     <div className="text-xs font-medium text-gray-900 underline">73 reviews</div>
                 </div> */}
                 <div className="text-[14px] font-bold">{product.name}</div>
-                <p className="font-bold mt-[4px] text-red-500">{formatPrice(product.price)}</p>
+                <p className="font-bold mt-[4px] text-red-500">{currencyFormat(product.price)} VND</p>
 
                 {/* <div className="mt-2 grid grid-cols-2 gap-2">
                     <div className="flex items-center gap-1">

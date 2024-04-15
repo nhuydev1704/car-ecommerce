@@ -19,7 +19,7 @@ const Header = () => {
         <header className="sticky top-0 z-50 w-full border-b bg-background">
             <div className="container flex h-16 items-center">
                 <div className="flex items-center gap-6">
-                    <Link href="/" className="hidden items-center space-x-2 lg:flex">
+                    <Link href="/" className="hidden items-center space-x-2 lg:flex  rounded-full overflow-hidden">
                         <Image src="/icon.png" height={40} width={45} alt="logo" />
                     </Link>
                     <NavigationMenu>

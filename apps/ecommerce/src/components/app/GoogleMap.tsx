@@ -10,8 +10,8 @@ import React from 'react';
 // };
 
 const location2 = {
-    lat: 21.012519,
-    lng: 105.850305,
+    lat: 20.9807585,
+    lng: 105.8108142,
 };
 
 const containerStyle = {
@@ -98,16 +98,14 @@ const GoogleMapComponent = () => {
                             <InfoBox options={options} position={location2}>
                                 <div className="marker_style">
                                     <p className="mb-2 text-[15px] font-bold">Showroom</p>
-                                    <div className="mb-2 text-[14px] text-[#D06D6B]">
-                                        174 P. Triệu Việt Vương, Hai Bà Trưng, Hà Nội
-                                    </div>
-                                    <div className="mb-3 text-[13px]">SĐT: 19004468</div>
+                                    <div className="mb-2 text-[14px] text-[#D06D6B]">Chợ Ô Tô Xứ Đoài</div>
+                                    <div className="mb-3 text-[13px]">SĐT: 0973641046</div>
                                     <div className="flex gap-3">
                                         <a title="Xem trên bản đồ">
                                             <div
                                                 onClick={() => {
                                                     window.open(
-                                                        'https://www.google.com/maps?ll=21.012519,105.850305&z=17&t=m&hl=vi&gl=US&mapclient=embed&q=174+P.+Tri%E1%BB%87u+Vi%E1%BB%87t+V%C6%B0%C6%A1ng+B%C3%B9i+Th%E1%BB%8B+Xu%C3%A2n+Hai+B%C3%A0+Tr%C6%B0ng+H%C3%A0+N%E1%BB%99i',
+                                                        'https://www.google.com/maps/place/Ch%E1%BB%A3+%C3%94+T%C3%B4+X%E1%BB%A9+%C4%90o%C3%A0i/@20.9807585,105.8108142,15z/data=!4m6!3m5!1s0x3135ace948a781cd:0xc1083553da7c9930!8m2!3d20.9807585!4d105.8108142!16s%2Fg%2F11vkz8szxt?entry=ttu',
                                                         '_blank'
                                                     );
                                                 }}
@@ -120,7 +118,7 @@ const GoogleMapComponent = () => {
                                             <div
                                                 onClick={() => {
                                                     window.open(
-                                                        'https://www.google.com/maps/dir//174+P.+Tri%E1%BB%87u+Vi%E1%BB%87t+V%C6%B0%C6%A1ng+B%C3%B9i+Th%E1%BB%8B+Xu%C3%A2n+Hai+B%C3%A0+Tr%C6%B0ng+H%C3%A0+N%E1%BB%99i/@21.0125185,105.8503054,17z/data=!4m8!4m7!1m0!1m5!1m1!1s0x3135ab8b6fe45c5f:0x3940d8f2d355e396!2m2!1d105.8503054!2d21.0125185',
+                                                        'https://www.google.com/maps/dir//Ch%E1%BB%A3+%C3%94+T%C3%B4+X%E1%BB%A9+%C4%90o%C3%A0i,+316A+%C4%90.+Nguy%E1%BB%85n+Xi%E1%BB%83n,+%C4%90%E1%BA%A1i+Kim,+Thanh+Xu%C3%A2n,+H%C3%A0+N%E1%BB%99i+100000/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x3135ace948a781cd:0xc1083553da7c9930?sa=X&ved=1t:3061&ictx=111',
                                                         '_blank'
                                                     );
                                                 }}

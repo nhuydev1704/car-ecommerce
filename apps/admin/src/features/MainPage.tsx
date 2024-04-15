@@ -24,7 +24,7 @@ const MainPage = ({ role }: { role: string }) => {
             setLogged(true);
 
             if (pathname === routerPage.register || pathname === routerPage.login) {
-                return navigate('/');
+                return navigate('/category');
             }
             navigate(pathname);
         } else {

@@ -28,12 +28,18 @@ export const columnsProduct = (page: number): ColumnsType<any> => [
     {
         title: 'Hình ảnh',
         dataIndex: 'images',
-        width: 300,
+        width: 400,
         render: (row, record, index) => (
             <Image.PreviewGroup>
-                <Space>
+                <Space
+                    style={
+                        {
+                            // flexWrap: 'wrap',
+                        }
+                    }
+                >
                     {row.split(',').map((img: any) => {
-                        return <Image width={100} src={img} />;
+                        return <Image height={40} src={img} />;
                     })}
                 </Space>
             </Image.PreviewGroup>
