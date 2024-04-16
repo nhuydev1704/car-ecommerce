@@ -9,11 +9,11 @@ const createContact = catchAsync(async (req, res) => {
 });
 
 const getContacts = catchAsync(async (req, res) => {
-  const filter = pick(req.query, ['full_name']);
+  const filter = pick(req.query, ['name']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
   const result = await contactService.queryContacts(
     {
-      full_name: { $regex: filter.full_name || '' },
+      full_name: { $regex: filter.name || '' },
     },
     options
   );
