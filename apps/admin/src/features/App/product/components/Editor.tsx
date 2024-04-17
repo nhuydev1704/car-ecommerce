@@ -3,6 +3,7 @@ import { Editor } from '@tinymce/tinymce-react';
 
 import AxiosClient from '@/apis/AxiosClient';
 import useDebounce from '@/hooks/useDebounce';
+import axios from 'axios';
 
 const checkImage = (file: File) => {
     const types = ['image/png', 'image/jpeg', 'image/jpg'];
@@ -98,61 +99,49 @@ const NewsEditor = ({
                     menubar: true,
                     statubar: true,
                     branding: false,
-                    file_picker_callback: async function (callback, value, meta) {
+                    file_picker_callback: async function (callback: any, _value: any, meta: any) {
                         if (meta?.filetype === 'image') {
-                            let input: any = document.getElementById('my-file-upload');
-                            input.click();
-                            input.onchange = async () => {
-                                var file = input.files[0];
-                                const check = checkImage(file);
-                                if (check !== '' && check) {
-                                    return;
-                                }
-
-                                const fmData = new FormData();
-                                const config = {
-                                    headers: {
-                                        Accept: 'multipart/form-data',
-                                        'Content-Type': 'multipart/form-data',
-                                    },
-                                };
-                                fmData.append('file', file);
-                                AxiosClient.post('/files/upload/single/image', fmData, config).then((res) => {
-                                    if (res?.data?.url) {
-                                        callback(res?.data?.url, {
-                                            alt: file.name,
-                                        });
-                                    }
-                                });
-                            };
+                          const input: any = document.getElementById('my-file-upload');
+                          input.click();
+                          input.onchange = async () => {
+                            const file = input.files[0];
+                            const check = checkImage(file);
+                            if (check !== '' && check) {
+                              return;
+                            }
+            
+                            const url = `https://api.cloudinary.com/v1_1/dul50ltpz/upload`;
+                            const formData = new FormData();
+                            formData.append('file', file);
+                            formData.append('upload_preset', 'qznfh3dk');
+            
+                            // eslint-disable-next-line no-await-in-loop
+                            const res: any = await axios.post(url, formData);
+            
+                            setTimeout(() => {
+                              callback(res.data.secure_url, {
+                                alt: res.data.secure_url,
+                              });
+                            }, 1000);
+            
+                            // AxiosClient.post(
+                            //   '/files/upload/single/image',
+                            //   fmData,
+                            //   config
+                            // ).then(res => {
+                            //   if (res?.data?.url) {
+                            //     callback(res?.data?.url, {
+                            //       alt: file.name,
+                            //     });
+                            //   }
+                            // });
+                          };
                         } else {
-                            let input: any = document.getElementById('my-file-upload');
-                            input.click();
-                            input.onchange = async () => {
-                                var file = input.files[0];
-                                const check = checkImage(file);
-                                if (check !== '' && check) {
-                                    return;
-                                }
-
-                                const fmData = new FormData();
-                                const config = {
-                                    headers: {
-                                        Accept: 'multipart/form-data',
-                                        'Content-Type': 'multipart/form-data',
-                                    },
-                                };
-                                fmData.append('file', file);
-                                AxiosClient.post('/files/upload/single/video', fmData, config).then((res) => {
-                                    if (res?.data?.url) {
-                                        callback(res?.data?.url, {
-                                            alt: file.name,
-                                        });
-                                    }
-                                });
-                            };
+                          const input: any = document.getElementById('my-file-upload');
+                          input.click();
+                          input.onchange = async () => {};
                         }
-                    },
+                      },
                 }}
             />
         </>
