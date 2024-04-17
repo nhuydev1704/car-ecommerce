@@ -55,7 +55,7 @@ const MenuCategory = () => {
         setLoading(true);
         AxiosClient.get('/category')
             .then((res) => {
-                setCategories(res.data);
+                setCategories(res.data || []);
             })
             .finally(() => setLoading(false));
     }, []);

@@ -16,7 +16,7 @@ const IntroducePage = () => {
     }, []);
 
     return (
-        <div className="flex py-[20px] justify-center">
+        <div className="flex p-[20px] justify-center">
             {introduce && (
                 <div className="max-w-screen-xl space-y-4">
                     <BreadcrumbComponent title="Giới thiệu" />

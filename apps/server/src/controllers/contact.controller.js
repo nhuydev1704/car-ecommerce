@@ -13,7 +13,7 @@ const getContacts = catchAsync(async (req, res) => {
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
   const result = await contactService.queryContacts(
     {
-      full_name: { $regex: filter.name || '' },
+      full_name: { $regex: new RegExp(filter.name || '', 'i') },
     },
     options
   );

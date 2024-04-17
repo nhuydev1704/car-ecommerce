@@ -28,7 +28,7 @@ const Product = () => {
             .then((res: any) => {
                 setTotal(res.totalResults);
                 if (page === 1) {
-                    setProducts(res.data);
+                    setProducts(res.data || []);
                 } else {
                     setProducts((prev: any) => [...prev, ...res.data]);
                 }
