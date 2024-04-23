@@ -3,6 +3,10 @@ const pick = require('../utils/pick');
 const catchAsync = require('../utils/catchAsync');
 const { contactService } = require('../services');
 
+function removeAccents(str) {
+  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
 const createContact = catchAsync(async (req, res) => {
   const contact = await contactService.createContact(req.body);
   res.status(httpStatus.CREATED).send(contact);
@@ -11,9 +15,23 @@ const createContact = catchAsync(async (req, res) => {
 const getContacts = catchAsync(async (req, res) => {
   const filter = pick(req.query, ['name']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
+  const search = removeAccents(filter.name || '');
+
+  const statusFilter =
+    req.query.status !== undefined
+      ? {
+          status: req.query.status,
+        }
+      : {};
+
   const result = await contactService.queryContacts(
     {
-      full_name: { $regex: new RegExp(filter.name || '', 'i') },
+      $or: [
+        { full_name: { $regex: search, $options: 'i' } },
+        { phone: { $regex: search, $options: 'i' } },
+        { address: { $regex: search, $options: 'i' } },
+      ],
+      ...statusFilter,
     },
     options
   );

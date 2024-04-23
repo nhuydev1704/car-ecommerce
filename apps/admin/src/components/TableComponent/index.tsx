@@ -156,6 +156,7 @@ const TableComponent: React.FC<IProps> = ({
                         columns={columns}
                         // onChange={(all) => console.log('change table', all)}
                         components={components}
+                        locale={{emptyText:"Danh sách trống"} }
                     />
                 </WrapperTable>
             </Col>

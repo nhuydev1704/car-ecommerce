@@ -6,15 +6,15 @@ import * as React from 'react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
 function Banner() {
-    const plugin = React.useRef(Autoplay({ delay: 4000, stopOnInteraction: true }));
+    const plugin = React.useRef(Autoplay({ delay: 2000, stopOnInteraction: false }));
 
     return (
         <div className="py-[20px]">
             <Carousel
                 plugins={[plugin.current]}
                 className="container"
-                onMouseEnter={plugin.current.stop}
-                onMouseLeave={plugin.current.reset}
+                // onMouseEnter={plugin.current.stop}
+                // onMouseLeave={plugin.current.reset}
             >
                 <CarouselContent>
                     {['/banner1.jpeg', '/banner2.jpeg', '/banner3.jpeg'].map((_: any, index: any) => (

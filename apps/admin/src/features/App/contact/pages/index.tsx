@@ -4,7 +4,7 @@ import ClearFilterLoading from '@/components/ClearFilter/ClearFilter.Loading';
 import TableComponent from '@/components/TableComponent';
 import TopBar from '@/components/TopBar';
 import Container from '@/layout/Container';
-import { Button, Popconfirm, Segmented, Space, Switch } from 'antd';
+import { Button, Popconfirm, Segmented, Select, Space, Switch } from 'antd';
 import React from 'react';
 import { useQuery } from 'react-query';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -77,7 +77,27 @@ const ContactPage = () => {
                         loadingClearFilter ? (
                             <ClearFilterLoading key="clear_filter" />
                         ) : (
-                            <FilterProduct params={filterQuery} returnFilter={returnFilter} key="filterCategory" />
+                            <Space>
+                                <FilterProduct
+                                    placeholder="Nhập Họ tên, Số điện thoại, Địa chỉ ..."
+                                    params={filterQuery}
+                                    returnFilter={returnFilter}
+                                    key="filterCategory"
+                                />
+                                <Select
+                                    style={{
+                                        width: 300,
+                                    }}
+                                    allowClear
+                                    placeholder="Trạng thái liên hệ"
+                                    onChange={(e: any) => {
+                                        setFilterQuery({ ...filterQuery, status: e });
+                                    }}
+                                >
+                                    <Select.Option value="true">Đã liên hệ</Select.Option>
+                                    <Select.Option value="false">Chưa liên hệ</Select.Option>
+                                </Select>
+                            </Space>
                         )
                     }
                 >

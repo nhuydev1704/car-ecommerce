@@ -22,7 +22,7 @@ const ContactPage = () => {
     }, []);
 
     return (
-        <div className="flex py-[20px] justify-center">
+        <div className="flex p-[20px] justify-center">
             <div className="max-w-screen-xl w-full space-y-4">
                 {isRender && <BreadcrumbComponent title="Liên hệ" />}
                 <div>

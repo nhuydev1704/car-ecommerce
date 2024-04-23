@@ -15,21 +15,30 @@ import { toast } from 'sonner';
 import { Textarea } from '@/components/ui/textarea';
 
 const formSchema = z.object({
-    full_name: z.string().min(2, {
-        message: 'Tên không được ít hơn 2 ký tự',
+    full_name: z.string().min(1, {
+        message: 'Trường bắt buộc nhập',
     }),
-    phone: z.string().min(10, {
-        message: 'Số điện thoại không hợp lệ',
-    }),
+    phone: z
+        .string()
+        .min(1, {
+            message: 'Trường bắt buộc nhập',
+        })
+        .max(10, {
+            message: 'Số điện thoại không hợp lệ',
+        }),
     email: z
         .string()
         .email({
             message: 'Email không hợp lệ',
         })
         .optional(),
-    address: z.string().min(2, {
-        message: 'Địa chỉ không được ít hơn 2 ký tự',
-    }),
+    address: z
+        .string({
+            required_error: 'Trường bắt buộc nhập',
+        })
+        .min(1, {
+            message: 'Trường bắt buộc nhập',
+        }),
     note: z.string().optional(),
 });
 

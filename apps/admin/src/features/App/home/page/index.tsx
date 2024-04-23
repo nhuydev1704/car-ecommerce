@@ -1,9 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 const HomePage = () => {
-    const [count, setCount] = React.useState(0);
+    const navigate = useNavigate();
+    navigate('/category');
 
-    return <div>HomePage1232412</div>;
+    return null;
 };
 
 export default HomePage;

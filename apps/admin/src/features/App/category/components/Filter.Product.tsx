@@ -5,7 +5,15 @@ import { useLocation } from 'react-router-dom';
 
 const { Option } = Select;
 
-const Filter = ({ returnFilter, params }: { returnFilter: (filter: any) => void; params: any }) => {
+const Filter = ({
+    returnFilter,
+    params,
+    placeholder,
+}: {
+    returnFilter: (filter: any) => void;
+    params: any;
+    placeholder?: string;
+}) => {
     const location = useLocation();
 
     return (
@@ -13,7 +21,7 @@ const Filter = ({ returnFilter, params }: { returnFilter: (filter: any) => void;
             <SearchInput
                 defaultValue={location.state?.search}
                 onChangeSearch={(search: any) => returnFilter({ name: search?.trim() })}
-                placeholderSearch="Nhập mã, tên sản phẩm"
+                placeholderSearch={placeholder || 'Nhập mã, tên sản phẩm'}
             />
         </Space>
     );
