@@ -150,7 +150,7 @@ const FormContact = () => {
                 </form>
             </Form>
 
-            <Dialog open={openModal}>
+            {/* <Dialog open={openModal}>
                 <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>
                         <DialogTitle>Thành công! Chúng tôi sẽ sớm trả lời bạn.</DialogTitle>
@@ -168,7 +168,7 @@ const FormContact = () => {
                         </CountdownCircleTimer>
                     </div>
                 </DialogContent>
-            </Dialog>
+            </Dialog> */}
         </>
     );
 };
