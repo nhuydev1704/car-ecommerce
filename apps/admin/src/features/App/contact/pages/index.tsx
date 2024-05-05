@@ -140,6 +140,35 @@ const ContactPage = () => {
                                     />
                                 ),
                             },
+                            {
+                                title: 'Action',
+                                key: 'action',
+                                width: 120,
+                                align: 'center',
+                                render: (text, record) => (
+                                    <Space>
+                                        <Popconfirm
+                                            title="Xác nhận xoá"
+                                            onConfirm={() => {
+                                                AxiosClient.delete(`/contact/${record.id}`).then(() => {
+                                                    refetch();
+                                                    Notification('success', 'Xoá thành công thông tin liên hệ');
+                                                });
+                                            }}
+                                        >
+                                            <Button
+                                                danger
+                                                onClick={() => {
+                                                    // handleDelete(record.id);
+                                                }}
+                                                size="small"
+                                            >
+                                                <IconAntd icon="DeleteOutlined" />
+                                            </Button>
+                                        </Popconfirm>
+                                    </Space>
+                                ),
+                            },
                         ]}
                         total={contact?.totalResults || 0}
                     />
