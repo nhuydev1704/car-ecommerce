@@ -62,7 +62,13 @@ const FormContact = () => {
 
         AxiosClient.post('/contact', values).then((response) => {
             toast.success('Gửi thông tin liên hệ thành công');
-            form.reset();
+            form.reset({
+                full_name: '',
+                phone: '',
+                email: '',
+                address: '',
+                note: '',
+            });
             setOpenModal(true);
         });
     }
