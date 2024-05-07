@@ -139,6 +139,8 @@ const ProductPage = () => {
                                                     Notification('success', 'Xoá thành công');
                                                 });
                                             }}
+                                            cancelText="Huỷ"
+                                            okText="Xóa"
                                         >
                                             <Button
                                                 danger
@@ -158,14 +160,14 @@ const ProductPage = () => {
                     />
                 </CardComponent>
             </Container>
-            <ClearFilter
+            {/* <ClearFilter
                 hidden={
                     Object.values(handleObjectEmpty(filterQuery))?.filter(
                         (item: any) => item !== undefined && item !== ''
                     ).length > 0
                 }
                 onClick={onClearFilter}
-            />
+            /> */}
         </>
     );
 };

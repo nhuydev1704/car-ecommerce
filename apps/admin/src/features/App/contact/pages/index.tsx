@@ -155,6 +155,8 @@ const ContactPage = () => {
                                                     Notification('success', 'Xoá thành công thông tin liên hệ');
                                                 });
                                             }}
+                                            cancelText="Huỷ"
+                                            okText="Xóa"
                                         >
                                             <Button
                                                 danger
@@ -174,14 +176,14 @@ const ContactPage = () => {
                     />
                 </CardComponent>
             </Container>
-            <ClearFilter
+            {/* <ClearFilter
                 hidden={
                     Object.values(handleObjectEmpty(filterQuery))?.filter(
                         (item: any) => item !== undefined && item !== ''
                     ).length > 0
                 }
                 onClick={onClearFilter}
-            />
+            /> */}
         </>
     );
 };

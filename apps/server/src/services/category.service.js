@@ -9,10 +9,12 @@ const Category = require('../models/category.model');
  */
 const createCategory = async (categoryBody) => {
   const category = await Category.findOne({
-    name: categoryBody.name,
+    // name: categoryBody.name,
+    name: { $regex: new RegExp('^' + categoryBody.name + '$', 'i') }
+
   });
   if (category) {
-    throw new ApiError(httpStatus.BAD_REQUEST, 'Category already taken');
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Hãng xe đã tồn tại!');
   }
 
   return Category.create(categoryBody);

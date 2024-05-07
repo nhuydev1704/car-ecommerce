@@ -46,7 +46,7 @@ const Footer = () => {
                 </div>
                 <hr className="my-6 border-gray-200 sm:mx-auto lg:my-8" />
                 <span className="block text-sm text-gray-500 sm:text-center">
-                    © Bản quyền thuộc về Chợ Ô Tô Xứ Đoài - Chuyên trang mua bán ô tô
+                    © Bản quyền thuộc về Chợ Ô Tô Xứ Đoài - Chuyên mua bán ô tô
                 </span>
             </div>
         </footer>

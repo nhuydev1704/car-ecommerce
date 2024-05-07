@@ -15,26 +15,26 @@ const createContact = catchAsync(async (req, res) => {
 const getContacts = catchAsync(async (req, res) => {
   const filter = pick(req.query, ['name']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
-  const search = removeAccents(filter.name || '');
+  const search = (filter.name || '');
 
   const statusFilter =
     req.query.status !== undefined
       ? {
-          status: req.query.status,
-        }
+        status: req.query.status,
+      }
       : {};
 
   const result = await contactService.queryContacts(
     {
       $or: [
-        { full_name: { $regex: search, $options: 'i' } },
-        { phone: { $regex: search, $options: 'i' } },
-        { address: { $regex: search, $options: 'i' } },
+        { "full_name": { "$regex": `^${search}`, "$options": "i" } },
+        { "phone": { "$regex": `^${search}`, "$options": "i" } },
+        { "address": { "$regex": `^${search}`, "$options": "i" } }
       ],
       ...statusFilter,
     },
     options
-  );
+  )
   res.send(result);
 });
 

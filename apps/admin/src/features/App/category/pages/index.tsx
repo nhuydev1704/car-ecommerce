@@ -134,6 +134,7 @@ const CategoryPage = () => {
                                             <IconAntd icon="EditOutlined" />
                                         </Button>
                                         <Popconfirm
+                                    
                                             title="Xác nhận xoá"
                                             onConfirm={() => {
                                                 AxiosClient.delete(`/category/${record.id}`).then(() => {
@@ -141,6 +142,8 @@ const CategoryPage = () => {
                                                     Notification('success', 'Xoá hãng xe thành công');
                                                 });
                                             }}
+                                            cancelText="Huỷ"
+                                            okText="Xóa"
                                         >
                                             <Button
                                                 danger
@@ -160,14 +163,14 @@ const CategoryPage = () => {
                     />
                 </CardComponent>
             </Container>
-            <ClearFilter
+            {/* <ClearFilter
                 hidden={
                     Object.values(handleObjectEmpty(filterQuery))?.filter(
                         (item: any) => item !== undefined && item !== ''
                     ).length > 0
                 }
                 onClick={onClearFilter}
-            />
+            /> */}
             <CategoryFormPage modalVisible={modalVisible} values={values} handleCloseForm={handleCloseForm} />
         </>
     );

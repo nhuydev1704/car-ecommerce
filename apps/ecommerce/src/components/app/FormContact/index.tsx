@@ -31,7 +31,7 @@ const formSchema = z.object({
         .email({
             message: 'Email không hợp lệ',
         })
-        .optional(),
+        .optional().or(z.literal('')),
     address: z
         .string({
             required_error: 'Trường bắt buộc nhập',
