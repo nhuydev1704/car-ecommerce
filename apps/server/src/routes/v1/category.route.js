@@ -1,7 +1,6 @@
 const express = require('express');
 const multer = require('multer');
 
-const auth = require('../../middlewares/auth');
 const categoryController = require('../../controllers/category.controller');
 
 const upload = multer({
@@ -14,15 +13,12 @@ const upload = multer({
 
 const router = express.Router();
 
-router
-  .route('/')
-  .post(auth('getCategories'), upload.single('icon'), categoryController.createCategory)
-  .get(categoryController.getCategories);
+router.route('/').post(upload.single('icon'), categoryController.createCategory).get(categoryController.getCategories);
 
 router
   .route('/:categoryId')
   // .get(auth('getUsers'), validate(userValidation.getUser), userController.getUser)
-  .patch(auth('getCategories'), upload.single('icon'), categoryController.updateCategory)
-  .delete(auth('getCategories'), categoryController.deleteCategory);
+  .patch(upload.single('icon'), categoryController.updateCategory)
+  .delete(categoryController.deleteCategory);
 
 module.exports = router;

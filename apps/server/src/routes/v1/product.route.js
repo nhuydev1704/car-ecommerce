@@ -1,7 +1,6 @@
 const express = require('express');
 const multer = require('multer');
 
-const auth = require('../../middlewares/auth');
 const productController = require('../../controllers/product.controller');
 
 const upload = multer({
@@ -13,15 +12,12 @@ const upload = multer({
 
 const router = express.Router();
 
-router
-  .route('/')
-  .post(auth('getProducts'), upload.array('file', 5), productController.createProduct)
-  .get(productController.getProducts);
+router.route('/').post(upload.array('file', 5), productController.createProduct).get(productController.getProducts);
 
 router
   .route('/:productId')
   .get(productController.getProduct)
-  .patch(auth('getProducts'), upload.array('file', 5), productController.updateProduct)
-  .delete(auth('getProducts'), productController.deleteProduct);
+  .patch(upload.array('file', 5), productController.updateProduct)
+  .delete(productController.deleteProduct);
 
 module.exports = router;

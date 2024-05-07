@@ -2,7 +2,6 @@ const express = require('express');
 const httpStatus = require('http-status');
 const he = require('he');
 
-const auth = require('../../middlewares/auth');
 const catchAsync = require('../../utils/catchAsync');
 const Introduce = require('../../models/introduce.model');
 
@@ -17,7 +16,6 @@ router
     })
   )
   .post(
-    auth('getIntroduce'),
     // upload.none(),
     catchAsync(async (req, res) => {
       const introduce = await Introduce.findByIdAndUpdate('660bc9410b3541b7f894f271', req.body);
