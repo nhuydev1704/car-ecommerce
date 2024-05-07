@@ -10,8 +10,7 @@ const Category = require('../models/category.model');
 const createCategory = async (categoryBody) => {
   const category = await Category.findOne({
     // name: categoryBody.name,
-    name: { $regex: new RegExp('^' + categoryBody.name + '$', 'i') }
-
+    name: { $regex: new RegExp('^' + categoryBody.name + '$', 'i') },
   });
   if (category) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Hãng xe đã tồn tại!');
@@ -33,6 +32,13 @@ const updateCategoryById = async (categoryId, updateBody) => {
   const category = await getCategoryById(categoryId);
   if (!category) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Category not found');
+  }
+  const categoryCheck = await Category.findOne({
+    // name: categoryBody.name,
+    name: { $regex: new RegExp('^' + updateBody.name + '$', 'i') },
+  });
+  if (categoryCheck) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Hãng xe đã tồn tại!');
   }
 
   Object.assign(category, updateBody);
