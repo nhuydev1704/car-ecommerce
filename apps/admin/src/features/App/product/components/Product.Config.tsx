@@ -18,7 +18,7 @@ export const columnsProduct = (page: number): ColumnsType<any> => [
     {
         title: 'Hãng xe',
         dataIndex: 'category_id',
-        render: (value) => value.name,
+        render: (value) => value?.name,
     },
     {
         title: 'Giá',
